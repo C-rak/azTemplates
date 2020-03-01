@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualMachines_db1_name": {
+      "value": "db1"
+    },
+    "virtualMachines_app1_name": {
+      "value": "app1"
+    },
+    "virtualMachines_web1_name": {
+      "value": "web1"
+    },
+    "networkInterfaces_db1_name": {
+      "value": "db1"
+    },
+    "networkInterfaces_app1_name": {
+      "value": "app1"
+    },
+    "publicIPAddresses_db1_ip_name": {
+      "value": "db1-ip"
+    },
+    "networkInterfaces_web1355_name": {
+      "value": "web1355"
+    },
+    "publicIPAddresses_app1_ip_name": {
+      "value": "app1-ip"
+    },
+    "publicIPAddresses_web1_ip_name": {
+      "value": "web1-ip"
+    },
+    "virtualNetworks_webappdb_RG_vnet_name": {
+      "value": "webappdb-RG-vnet"
+    },
+    "Username": {
+      "value": null
+    },
+    "Password": {
+      "value": null
+    }
+  }
+}
