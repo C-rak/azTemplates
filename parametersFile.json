@@ -33,10 +33,10 @@
       "value": "webappdb-RG-vnet"
     },
     "Username": {
-      "value": null
+      "value": "vmadmin"
     },
     "Password": {
-      "value": null
+      "value": "123#ntms123#"
     }
   }
 }
