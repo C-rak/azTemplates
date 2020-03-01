@@ -1,0 +1,370 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+	"NTMS-Hub1-location": {
+            "defaultValue": "EastUs",
+            "type": "String",
+            "metadata": {
+                "description": "Location for all resources."
+            }
+        },
+	"NTMS-Hub2-location": {
+            "defaultValue": "WestUs",
+            "type": "String",
+            "metadata": {
+                "description": "Location for all resources."
+            }
+        }
+	},
+    "variables": {
+        "Vnet-NTMS-Hub1-name": "NTMS-Hub1-VNet",
+        "Vnet-NTMS-Hub1-Subnet-name": "NTMS-Hub1-VNet-Subnet1",
+        "NTMS-Hub1-Address-Prefix": "10.1.0.0/16",
+        "NTMS-Hub1-Subnet1-Address-Prefix": "10.1.1.0/24",
+        "Vnet-Spoke1-name": "Spoke1-VNet",
+        "Vnet-Spoke1-Subnet-name": "Spoke1-VNet-Subnet1",
+        "Spoke1-Address-Prefix": "10.2.0.0/16",
+        "Spoke1-Subnet1-Address-Prefix": "10.2.1.0/24",
+        "Vnet-Spoke2-name": "Spoke2-VNet",
+        "Vnet-Spoke2-Subnet-name": "Spoke2-VNet-Subnet1",
+        "Spoke2-Address-Prefix": "10.3.0.0/16",
+        "Spoke2-Subnet1-Address-Prefix": "10.3.1.0/24",
+        "Vnet-NTMS-Hub2-name": "NTMS-Hub2-VNet",
+        "Vnet-NTMS-Hub2-Subnet-name": "NTMS-Hub2-VNet-Subnet1",
+        "NTMS-Hub2-Address-Prefix": "10.4.0.0/16",
+        "NTMS-Hub2-Subnet1-Address-Prefix": "10.4.1.0/24",
+        "Vnet-Spoke3-name": "Spoke3-VNet",
+        "Vnet-Spoke3-Subnet-name": "Spoke3-VNet-Subnet1",
+        "Spoke3-Address-Prefix": "10.5.0.0/16",
+        "Spoke3-Subnet1-Address-Prefix": "10.5.1.0/24",
+        "Vnet-Spoke4-name": "Spoke4-VNet",
+        "Vnet-Spoke4-Subnet-name": "Spoke4-VNet-Subnet1",
+        "Spoke4-Address-Prefix": "10.6.0.0/16",
+        "Spoke4-Subnet1-Address-Prefix": "10.6.1.0/24"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2018-08-01",
+            "name": "[variables('Vnet-NTMS-Hub1-name')]",
+            "location": "[parameters('NTMS-Hub1-location')]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('NTMS-Hub1-Address-Prefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('Vnet-NTMS-Hub1-Subnet-name')]",
+                        "properties": {
+                            "addressPrefix": "[variables('NTMS-Hub1-Subnet1-Address-Prefix')]"
+                        }
+                    }
+                ],
+                "enableDdosProtection": "false"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2018-08-01",
+            "name": "[variables('Vnet-spoke1-name')]",
+            "location": "[parameters('NTMS-Hub1-location')]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('Spoke1-Address-Prefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('Vnet-Spoke1-Subnet-name')]",
+                        "properties": {
+                            "addressPrefix": "[variables('Spoke1-Subnet1-Address-Prefix')]"
+                        }
+                    }
+                ],
+                "enableDdosProtection": "false"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2018-08-01",
+            "name": "[variables('Vnet-spoke2-name')]",
+            "location": "[parameters('NTMS-Hub1-location')]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('Spoke2-Address-Prefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('Vnet-Spoke2-Subnet-name')]",
+                        "properties": {
+                            "addressPrefix": "[variables('Spoke2-Subnet1-Address-Prefix')]"
+                        }
+                    }
+                ],
+                "enableDdosProtection": "false"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2018-08-01",
+            "name": "[variables('Vnet-NTMS-Hub2-name')]",
+            "location": "[parameters('NTMS-Hub2-location')]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('NTMS-Hub2-Address-Prefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('Vnet-NTMS-Hub2-Subnet-name')]",
+                        "properties": {
+                            "addressPrefix": "[variables('NTMS-Hub2-Subnet1-Address-Prefix')]"
+                        }
+                    }
+                ],
+                "enableDdosProtection": "false"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2018-08-01",
+            "name": "[variables('Vnet-spoke3-name')]",
+            "location": "[parameters('NTMS-Hub2-location')]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('Spoke3-Address-Prefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('Vnet-Spoke3-Subnet-name')]",
+                        "properties": {
+                            "addressPrefix": "[variables('Spoke3-Subnet1-Address-Prefix')]"
+                        }
+                    }
+                ],
+                "enableDdosProtection": "false"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2018-08-01",
+            "name": "[variables('Vnet-spoke4-name')]",
+            "location": "[parameters('NTMS-Hub2-location')]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('Spoke4-Address-Prefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('Vnet-Spoke4-Subnet-name')]",
+                        "properties": {
+                            "addressPrefix": "[variables('Spoke4-Subnet1-Address-Prefix')]"
+                        }
+                    }
+                ],
+                "enableDdosProtection": "false"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+            "apiVersion": "2016-06-01",
+            "name": "NTMS-Hub1-VNet/Link-To-Spoke1",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-NTMS-Hub1-name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-Spoke1-name'))]"
+            ],
+            "properties": {
+                "allowVirtualNetworkAccess": true,
+                "allowForwardedTraffic": false,
+                "allowGatewayTransit": false,
+                "useRemoteGateways": false,
+                "remoteVirtualNetwork": {
+                    "id": "[resourceId('Microsoft.Network/virtualNetworks', 'Spoke1-VNet')]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+            "apiVersion": "2016-06-01",
+            "name": "Spoke1-VNet/Link-To-NTMS-Hub1-Vnet",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-NTMS-Hub1-name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-Spoke1-name'))]"
+            ],
+            "properties": {
+                "allowVirtualNetworkAccess": true,
+                "allowForwardedTraffic": false,
+                "allowGatewayTransit": false,
+                "useRemoteGateways": false,
+                "remoteVirtualNetwork": {
+                    "id": "[resourceId('Microsoft.Network/virtualNetworks', 'NTMS-Hub1-Vnet')]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+            "apiVersion": "2016-06-01",
+            "name": "NTMS-Hub1-VNet/Link-To-Spoke2",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-NTMS-Hub1-name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-Spoke2-name'))]"
+            ],
+            "properties": {
+                "allowVirtualNetworkAccess": true,
+                "allowForwardedTraffic": false,
+                "allowGatewayTransit": false,
+                "useRemoteGateways": false,
+                "remoteVirtualNetwork": {
+                    "id": "[resourceId('Microsoft.Network/virtualNetworks', 'Spoke2-VNet')]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+            "apiVersion": "2016-06-01",
+            "name": "Spoke2-VNet/Link-To-NTMS-Hub1-Vnet",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-NTMS-Hub1-name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-Spoke2-name'))]"
+            ],
+            "properties": {
+                "allowVirtualNetworkAccess": true,
+                "allowForwardedTraffic": false,
+                "allowGatewayTransit": false,
+                "useRemoteGateways": false,
+                "remoteVirtualNetwork": {
+                    "id": "[resourceId('Microsoft.Network/virtualNetworks', 'NTMS-Hub1-Vnet')]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+            "apiVersion": "2016-06-01",
+            "name": "NTMS-Hub2-VNet/Link-To-Spoke3",
+            "location": "[parameters('NTMS-Hub2-location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-NTMS-Hub2-name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-Spoke3-name'))]"
+            ],
+            "properties": {
+                "allowVirtualNetworkAccess": true,
+                "allowForwardedTraffic": false,
+                "allowGatewayTransit": false,
+                "useRemoteGateways": false,
+                "remoteVirtualNetwork": {
+                    "id": "[resourceId('Microsoft.Network/virtualNetworks', 'Spoke3-VNet')]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+            "apiVersion": "2016-06-01",
+            "name": "Spoke3-VNet/Link-To-NTMS-Hub2-Vnet",
+            "location": "[parameters('NTMS-Hub2-location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-NTMS-Hub2-name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-Spoke3-name'))]"
+            ],
+            "properties": {
+                "allowVirtualNetworkAccess": true,
+                "allowForwardedTraffic": false,
+                "allowGatewayTransit": false,
+                "useRemoteGateways": false,
+                "remoteVirtualNetwork": {
+                    "id": "[resourceId('Microsoft.Network/virtualNetworks', 'NTMS-Hub2-Vnet')]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+            "apiVersion": "2016-06-01",
+            "name": "NTMS-Hub2-VNet/Link-To-Spoke4",
+            "location": "[parameters('NTMS-Hub2-location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-NTMS-Hub2-name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-Spoke4-name'))]"
+            ],
+            "properties": {
+                "allowVirtualNetworkAccess": true,
+                "allowForwardedTraffic": false,
+                "allowGatewayTransit": false,
+                "useRemoteGateways": false,
+                "remoteVirtualNetwork": {
+                    "id": "[resourceId('Microsoft.Network/virtualNetworks', 'Spoke4-VNet')]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+            "apiVersion": "2016-06-01",
+            "name": "Spoke4-VNet/Link-To-NTMS-Hub2-Vnet",
+            "location": "[parameters('NTMS-Hub2-location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-NTMS-Hub2-name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-Spoke4-name'))]"
+            ],
+            "properties": {
+                "allowVirtualNetworkAccess": true,
+                "allowForwardedTraffic": false,
+                "allowGatewayTransit": false,
+                "useRemoteGateways": false,
+                "remoteVirtualNetwork": {
+                    "id": "[resourceId('Microsoft.Network/virtualNetworks', 'NTMS-Hub2-Vnet')]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+            "apiVersion": "2016-06-01",
+            "name": "NTMS-Hub1-VNet/Link-To-Hub2-Vnet",
+            "location": "[parameters('NTMS-Hub2-location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-NTMS-Hub1-name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-NTMS-Hub2-name'))]"
+            ],
+            "properties": {
+                "allowVirtualNetworkAccess": true,
+                "allowForwardedTraffic": false,
+                "allowGatewayTransit": false,
+                "useRemoteGateways": false,
+                "remoteVirtualNetwork": {
+                    "id": "[resourceId('Microsoft.Network/virtualNetworks', 'NTMS-Hub2-Vnet')]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+            "apiVersion": "2016-06-01",
+            "name": "NTMS-Hub2-VNet/Link-To-Hub1-Vnet",
+            "location": "[parameters('NTMS-Hub2-location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-NTMS-Hub2-name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('Vnet-NTMS-Hub1-name'))]"
+            ],
+            "properties": {
+                "allowVirtualNetworkAccess": true,
+                "allowForwardedTraffic": false,
+                "allowGatewayTransit": false,
+                "useRemoteGateways": false,
+                "remoteVirtualNetwork": {
+                    "id": "[resourceId('Microsoft.Network/virtualNetworks', 'NTMS-Hub1-Vnet')]"
+                }
+            }
+        }
+    ]
+}
